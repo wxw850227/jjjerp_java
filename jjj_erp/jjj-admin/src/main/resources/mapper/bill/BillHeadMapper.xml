@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.jjjerp.admin.mapper.bill.BillHeadMapper">
+
+    <select id="jobBoard" resultType="java.util.Map">
+        SELECT
+                count(bill_type = 6 AND deposit > 0  AND TO_DAYS(create_time) = TO_DAYS(NOW()) OR NULL) AS fuKuan ,
+                count(bill_type = 6 AND purchase_status = 6 AND TO_DAYS(oper_time) = TO_DAYS(NOW()) OR NULL ) AS yiFaHuo ,
+                count(bill_type = 6 AND audit_status = 10 AND purchase_status != 4 OR NULL ) AS daiShenHe ,
+                count(bill_type = 6 AND audit_status = 20 AND purchase_status IN (5) OR NULL ) AS peiHuoZ ,
+                count(bill_type = 6 AND purchase_status =4 OR NULL ) AS yiChang ,
+                count(bill_type = 17 AND audit_status = 20 AND purchase_status not IN(1,3) AND refund_type = 40 OR NULL ) AS buFa,
+                count(bill_type = 17 AND audit_status = 20 AND purchase_status not IN(1,3) AND refund_type = 60 OR NULL ) AS qiTa,
+                count(bill_type = 17 AND audit_status = 20 AND purchase_status not IN(1,3) AND refund_type = 10 OR NULL ) AS tuiHuo,
+                count(bill_type = 17 AND audit_status = 20 AND purchase_status not IN(1,3) AND refund_type = 30 OR NULL ) AS tuiKuan,
+                count(bill_type = 17 AND audit_status = 20 AND purchase_status not IN(1,3) AND refund_type = 20 OR NULL ) AS huanHuo FROM ${prefix}bill_head
+        WHERE 1 = 1
+        <if test="appId != null and appId > 0">
+            AND app_id = #{appId}
+        </if>
+    </select>
+
+    <select id="dealBoard" resultType="net.jjjerp.common.vo.statement.DealVo">
+        SELECT
+            count(bill_id) AS depositNum ,
+            IFNULL(SUM(deposit),0) AS depositMoney,
+            count(DISTINCT customer_id) AS customerNum ,
+            count(purchase_status = 6 OR NULL) AS deliverNum ,
+            IFNULL(SUM(IF(purchase_status = 6 ,deposit,0)),0) AS deliverMoney
+        FROM ${prefix}bill_head
+        WHERE  bill_type = 6
+        <if test="startDate != null and startDate != '' and endDate != null and endDate != ''">
+            AND create_time BETWEEN #{startDate} AND #{endDate}
+        </if>
+        <if test="appId != null and appId > 0">
+            AND app_id = #{appId}
+        </if>
+    </select>
+
+    <select id="productBoard" resultType="net.jjjerp.common.vo.statement.ProductBoardVo">
+        <![CDATA[
+        SELECT i.product_id,SUM(i.basic_number) AS marketNum,IFNULL(SUM(i.all_price),0) AS marketPrice,p.`name` AS productName,
+               (SELECT file_path FROM ${prefix}product_image WHERE product_id = i.product_id  LIMIT 1) AS imagePath
+        FROM ${prefix}bill_item i LEFT JOIN ${prefix}product p ON i.product_id = p.product_id
+        WHERE  i.bill_type = 6  AND DATE_SUB(CURDATE(), INTERVAL 7 DAY) <= date(i.create_time)
+        GROUP BY i.product_id HAVING marketNum > 0 ORDER BY marketNum DESC, p.create_time DESC LIMIT 10
+        ]]>
+    </select>
+
+    <select id="dealHome" resultType="net.jjjerp.common.vo.statement.HomeDealVo">
+        SELECT
+        count(bill_id) AS depositNum ,
+        IFNULL(SUM(deposit),0) AS depositMoney
+        FROM ${prefix}bill_head
+        WHERE  bill_type = 6  AND create_time BETWEEN #{startDate} AND #{endDate}
+        <if test="appId != null and appId > 0">
+            AND app_id = #{appId}
+        </if>
+    </select>
+
+    <select id="backlog" resultType="net.jjjerp.common.vo.statement.BacklogVo">
+        SELECT
+        count(bill_type = 6 AND audit_status = 10 AND purchase_status != 4 OR NULL ) AS daiShenHe ,
+        count(bill_type = 6 AND audit_status = 20 AND purchase_status IN (2) OR NULL ) AS daiFaHuo ,
+        count(bill_type = 6 AND audit_status = 20 AND purchase_status = 5 OR NULL ) AS daiPeiHuo ,
+        count(bill_type = 17 AND audit_status = 20 AND purchase_status not IN(1,3) OR NULL ) AS daiShouHou,
+        count(bill_type = 6 AND purchase_status =4 OR NULL ) AS yiChang ,
+        count(bill_type = 17 AND audit_status = 20 AND purchase_status not IN(1,3) AND refund_type = 40 OR NULL ) AS buFa,
+        count(bill_type = 17 AND audit_status = 20 AND purchase_status not IN(1,3) AND refund_type = 60 OR NULL ) AS qiTa,
+        count(bill_type = 17 AND audit_status = 20 AND purchase_status not IN(1,3) AND refund_type = 10 OR NULL ) AS tuiHuo,
+        count(bill_type = 17 AND audit_status = 20 AND purchase_status not IN(1,3) AND refund_type = 30 OR NULL ) AS tuiKuan,
+        count(bill_type = 17 AND audit_status = 20 AND purchase_status not IN(1,3) AND refund_type = 20 OR NULL ) AS huanHuo FROM ${prefix}bill_head
+        WHERE 1 = 1
+        <if test="appId != null and appId > 0">
+            AND app_id = #{appId}
+        </if>
+    </select>
+</mapper>

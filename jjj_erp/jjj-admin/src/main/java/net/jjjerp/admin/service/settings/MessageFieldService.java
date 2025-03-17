@@ -1,0 +1,12 @@
+package net.jjjerp.admin.service.settings;
+
+import net.jjjerp.common.entity.settings.MessageField;
+import net.jjjerp.framework.common.service.BaseService;
+
+/**
+ * 应用消息字段表 服务类
+ * @author jjjerp
+ * @since 2022-06-24
+ */
+public interface MessageFieldService extends BaseService<MessageField> {
+}

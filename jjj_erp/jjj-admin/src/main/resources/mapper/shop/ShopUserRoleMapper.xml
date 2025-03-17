@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.jjjerp.admin.mapper.shop.ShopUserRoleMapper">
+    <select id="getUserRoleCount" resultType="java.lang.Integer">
+        select count(*) from ${prefix}admin_user_role user_role left join ${prefix}admin_user user
+        on user_role.shop_user_id = user.shop_user_id
+        where user_role.role_id = ${roleId} and user.is_delete = 0
+    </select>
+
+    <select id="getRoleListByUser" resultType="java.util.HashMap">
+        select role.role_id as roleId,role.role_name as roleName from ${prefix}admin_user_role user_role left join ${prefix}admin_role role
+        on user_role.role_id = role.role_id
+        where user_role.shop_user_id = ${shopUserId}
+    </select>
+
+    <select id="getRoleIdListByUser" resultType="java.lang.Integer">
+        select role.role_id as roleId from ${prefix}admin_user_role user_role left join ${prefix}admin_role role
+                                                                                                                  on user_role.role_id = role.role_id
+        where user_role.shop_user_id = ${shopUserId}
+    </select>
+</mapper>

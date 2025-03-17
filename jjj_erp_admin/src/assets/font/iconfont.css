@@ -1,0 +1,136 @@
+/* 在线链接服务仅供平台体验和调试使用，平台不承诺服务的稳定性，企业客户需下载字体包自行发布使用并做好备份。 */
+@font-face {
+  font-family: 'iconfont';  /* Project id 4535535 */
+  src: url('https://at.alicdn.com/t/c/font_4535535_j9ple5ja89.woff2?t=1719472432473') format('woff2'),
+       url('https://at.alicdn.com/t/c/font_4535535_j9ple5ja89.woff?t=1719472432473') format('woff'),
+       url('https://at.alicdn.com/t/c/font_4535535_j9ple5ja89.ttf?t=1719472432473') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-yemian:before {
+  content: "\e633";
+}
+
+.icon-wenjian:before {
+  content: "\eac5";
+}
+
+.icon-tuichu:before {
+  content: "\e67d";
+}
+
+.icon-guanliyuan:before {
+  content: "\e60a";
+}
+
+.icon-duizhang:before {
+  content: "\e64e";
+}
+
+.icon-xitongshezhixianxing:before {
+  content: "\e667";
+}
+
+.icon-tuihuorukuqingdan-:before {
+  content: "\e62b";
+}
+
+.icon-jianhuo:before {
+  content: "\e955";
+}
+
+.icon-qitadingdan:before {
+  content: "\e66b";
+}
+
+.icon-daishendan:before {
+  content: "\e632";
+}
+
+.icon-shouhouliucheng:before {
+  content: "\e64f";
+}
+
+.icon-xiaoshoubaobiao:before {
+  content: "\e77e";
+}
+
+.icon-tubiaozhizuomoban-119:before {
+  content: "\e62d";
+}
+
+.icon-zijinguanli:before {
+  content: "\e650";
+}
+
+.icon-kuaididayin:before {
+  content: "\e646";
+}
+
+.icon-chukudan:before {
+  content: "\e9fc";
+}
+
+.icon-jijinbeixuanku:before {
+  content: "\e705";
+}
+
+.icon-icon_jichudanganfile:before {
+  content: "\e603";
+}
+
+.icon-shouhouguanli:before {
+  content: "\e616";
+}
+
+.icon-ERP_xqcaigou:before {
+  content: "\e658";
+}
+
+.icon-shangpin:before {
+  content: "\e64b";
+}
+
+.icon-baobiaofenxi:before {
+  content: "\e662";
+}
+
+.icon-ico_getiaozhongxin_xiaoshoukaidan:before {
+  content: "\e8db";
+}
+
+.icon-caiwuguanli:before {
+  content: "\e64a";
+}
+
+.icon-goodswhtotalStock:before {
+  content: "\e669";
+}
+
+.icon-biaoqiankuozhan_shouye-146:before {
+  content: "\eb0a";
+}
+
+.icon-yanjing:before {
+  content: "\e661";
+}
+
+.icon-shouye:before {
+  content: "\e639";
+}
+
+.icon-mima:before {
+  content: "\e635";
+}
+
+.icon-yanjing-biyan:before {
+  content: "\e63a";
+}
+

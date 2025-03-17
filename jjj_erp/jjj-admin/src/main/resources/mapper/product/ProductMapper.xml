@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.jjjerp.admin.mapper.product.ProductMapper">
+
+<select id="getMaxProductCode" resultType="java.lang.String">
+    select max(CAST(p.product_code AS SIGNED)) product_code from ${prefix}product p
+    where p.delete_Flag !='1'
+</select>
+
+<select id="getMaxProductExtendCode" resultType="java.lang.String">
+    select max(CAST(pe.product_code AS SIGNED)) product_code from ${prefix}product_extend pe
+    where pe.delete_Flag !='1'
+</select>
+</mapper>

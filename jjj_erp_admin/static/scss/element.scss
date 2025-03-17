@@ -1,0 +1,341 @@
+:root {
+	--el-color-primary: #3b64fc;
+	--el-color-primary-light-3: #3b64fc;
+	--el-color-primary-light-5: #4f87fe;
+	--el-color-primary-light-7: #4f87fe;
+	--el-color-primary-light-8: #ebefff;
+	--el-color-primary-light-9: #ebefff;
+	--el-color-primary-dark-2: #3b64fc;
+	--el-component-size-small: 32px !important;
+	--el-dialog-title-bg: #f3f3f3;
+	--dialog-title-f: 16px;
+	--dialog-title-c: #303133;
+	--dialog-radius: 5px;
+	--el-font-size-base: 12px;
+	--el-component-size-small: 28px !important;
+	--right-content-box-height: calc(100vh - 82px) !important;
+	--common-header-box-height: 82px !important;
+}
+
+/* 文字主题色 */
+.theme-font {
+	color: var(--el-color-primary);
+}
+
+/* 文字主题色 */
+.theme-bg {
+	background-color: var(--el-color-primary);
+}
+
+/* 文字主题色 */
+.theme-border {
+	border-color: var(--el-color-primary);
+}
+.el-input_ {
+	font-size: 12px;
+}
+.el-input--small .el-input__wrapper {
+	height: 28px;
+	line-height: 28px;
+}
+/* 搜索表单 */
+.common-seach-wrap {
+	.el-form-item {
+		margin-right: 10px;
+	}
+	.el-input__wrapper {
+		padding: 0 8px;
+	}
+
+	.el-form-item__label {
+		--el-text-color-regular: #606266;
+		font-weight: 400;
+	}
+
+	.el-form--inline .el-form-item {
+		// margin-right: 10px;
+		margin-right: 0;
+		padding-right: 10px;
+	}
+}
+.el-table .el-table__cell {
+	padding: 5px 0;
+}
+.el-form-item--small {
+	margin-bottom: 8px;
+}
+.el-form-item--small .el-form-item__label {
+	height: var(--el-component-size-small) !important;
+	line-height: var(--el-component-size-small) !important;
+}
+
+.el-form-item__label {
+	font-weight: bold;
+	padding: 0 9px 0 0;
+}
+/* 普通表单 */
+.el-form-item__content {
+	display: block;
+	line-height: 30px !important;
+	// margin-top: 1px;
+	.el-input--small {
+		width: 172px;
+	}
+	.gray9 {
+		width: 100%;
+	}
+
+	.el-row {
+		.img {
+			width: 100%;
+			margin-top: 10px;
+		}
+	}
+
+	.el-date-editor {
+		--el-date-editor-width: auto;
+	}
+
+	span {
+		margin: 0 6px;
+	}
+
+	label span {
+		margin: 0 !important;
+	}
+
+	.el-input span {
+		margin: 0;
+	}
+
+	.el-color-picker--small .el-color-picker__trigger {
+		width: 32px;
+		height: 32px;
+
+		span {
+			margin: 0 !important;
+		}
+	}
+}
+
+/* 表格 */
+.el-table .cell {
+	line-height: 24px !important;
+	font-size: 12px !important;
+
+	.el-button.el-button--small.el-button--text + .el-button.el-button--small.el-button--text {
+		margin-left: -12px !important;
+	}
+}
+.el-dialog__footer {
+	padding-top: 0;
+}
+/* 按钮 */
+.el-button--small {
+	--el-button-size: var(--el-component-size-small);
+}
+
+.common-button-wrapper {
+	.el-button--small {
+		padding: 5px 22px !important;
+	}
+}
+
+/* 弹框 */
+.el-dialog__body {
+	overflow: hidden;
+	padding: 12px !important;
+	flex: 1;
+	overflow-y: auto;
+	// .dialog-footer {
+	// 	float: right;
+	// }
+}
+.el-dialog {
+	--el-dialog-width: 920px;
+	max-height: 600px;
+	display: flex;
+	flex-direction: column;
+	border-radius: var(--dialog-radius);
+	padding: 0 !important;
+}
+.el-dialog__header {
+	background-color: var(--el-dialog-title-bg);
+	margin-right: 0 !important;
+	padding: 11px !important;
+	border-top-left-radius: var(--dialog-radius);
+	border-top-right-radius: var(--dialog-radius);
+	.el-dialog__title {
+		font-size: var(--dialog-title-f);
+		color: var(--dialog-title-c);
+	}
+	.el-dialog__headerbtn {
+		width: 24px;
+		height: 24px;
+		font-size: 24px;
+		font-weight: bold;
+		top: 16px;
+		right: 16px;
+		line-height: 1;
+		.el-dialog__close {
+			width: 24px;
+			height: 24px;
+			font-size: 24px;
+			font-weight: bold;
+			color: #fff;
+		}
+	}
+}
+.dialog-footer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 9px 0;
+	// border-top: 1px solid #eee;
+	.el-button {
+		// border-radius: 0;
+		font-size: 14px;
+		height: 32px;
+		line-height: 32px;
+		min-width: 96px;
+	}
+}
+// .el-dialog__headerbtn {
+// 	.el-icon svg {
+// 		width: auto !important;
+// 		height: auto !important;
+// 	}
+// }
+.el-dialog__footer {
+	padding: 0 !important;
+}
+.table-wrap {
+	height: 100%;
+	// padding: 0 20px 20px;
+}
+
+.el-tabs {
+	.el-tabs__item {
+		font-size: 12px;
+		font-weight: bold !important;
+
+		span {
+			font-weight: inherit;
+		}
+	}
+}
+
+.el-table {
+	--el-table-border-color: #eeeeee !important;
+	--el-table-header-bg-color: #ebf5ff !important;
+	--el-table-header-text-color: #101010 !important;
+	width: 100% !important;
+
+	.el-table__cell {
+		position: static !important;
+	}
+}
+
+.el-form {
+	--el-text-color-regular: #333;
+	--el-font-size-base: 12px !important;
+}
+
+.el-form-item {
+	--font-size: 12px !important;
+
+	.el-form-item {
+		margin-bottom: 18px;
+	}
+}
+
+.el-radio__input.is-checked + .el-radio__label {
+	span {
+		color: var(--el-text-color-regular);
+	}
+}
+
+.pagination {
+	overflow: hidden;
+
+	.el-pagination {
+		float: right;
+	}
+}
+
+.upload-dialog .pagination-wrap {
+	float: right;
+}
+
+// .el-icon svg {
+//     height: 1.5em;
+//     width: 1.5em;
+// }
+.img-select .el-icon svg {
+	width: 24px;
+	height: 24px;
+}
+
+/* 图片查看器 */
+.el-image-viewer__canvas {
+	padding: 20px;
+	box-sizing: border-box;
+}
+/* 弹窗 */
+.el-overlay {
+	position: fixed;
+	height: var(--right-content-box-height);
+	top: var(--common-header-box-height);
+	left: 74px;
+}
+.el-overlay-dialog {
+	position: absolute;
+}
+.el-dialog.is-fullscreen {
+	width: 100%;
+	max-height: initial;
+}
+.el-dialog.is-fullscreen .el-form-item__content .el-input--small {
+	width: 100%;
+}
+
+[class*='el-col-'] {
+	.el-form-item__content .el-input--small {
+		width: 100%;
+	}
+	.el-select--small {
+		width: 100%;
+	}
+}
+.el-select--small .el-input__wrapper {
+	height: 100%;
+}
+.el-select--small {
+	width: 172px;
+}
+.set-main {
+	height: calc(100vh - 84px - 24px);
+	display: flex;
+	flex-direction: column;
+}
+.page-mine-box {
+	height: calc(100vh - 84px - 24px);
+}
+.el-card {
+	border: none;
+}
+.el-pagination__sizes .el-select--small {
+	width: 100px;
+}
+.el-dialog__header {
+	font-weight: bold;
+}
+.el-dialog__header .my-header .el-icon {
+	width: 24px;
+	height: 24px;
+	font-size: 24px;
+	font-weight: bold;
+	color: #838a9d;
+	cursor: pointer;
+	margin-left: 5px;
+}
