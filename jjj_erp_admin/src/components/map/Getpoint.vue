@@ -1,28 +1,41 @@
 <template>
-  <!--
-    	作者：luoyiming
-    	时间：2019-10-26
-    	描述：获取腾讯坐标
-    -->
   <div class="getpoint-container">
     <div>
       <div id="cur_city">
         <div class="d-s-c map-header-box">
           <span class="pr16">{{ select_city }}</span>
-          <a href="javascript:void(0);" @click="selectCityFunc" class="btn-city">
+          <a
+            href="javascript:void(0);"
+            @click="selectCityFunc"
+            class="btn-city"
+          >
             [
-            <span style="text-decoration:underline;">更换城市</span>
+            <span style="text-decoration: underline">更换城市</span>
             ]
           </a>
           <span class="pl16">当前缩放等级：{{ zoom }}</span>
           <div class="d-s-c pl16 pr">
             <div class="search-word-list">
               <ul>
-                <li :class="{ curr: searchlist_index == index }" v-for="(item, index) in searchWordList" :key="index" @click="ChooseSeatchValue(item.title)">{{ item.title }}</li>
+                <li
+                  :class="{ curr: searchlist_index == index }"
+                  v-for="(item, index) in searchWordList"
+                  :key="index"
+                  @click="ChooseSeatchValue(item.title)"
+                >
+                  {{ item.title }}
+                </li>
               </ul>
             </div>
-            <input class="search-box" type="text" @keyup="keyupFunc" v-model="searchValue" />
-            <span class="ml4"><el-button @click="searchFunc">搜索</el-button></span>
+            <input
+              class="search-box"
+              type="text"
+              @keyup="keyupFunc"
+              v-model="searchValue"
+            />
+            <span class="ml4"
+              ><el-button @click="searchFunc">搜索</el-button></span
+            >
           </div>
         </div>
 
@@ -56,9 +69,11 @@
                 <span class="city_name">重庆</span>
               </div>
             </div>
-            <div style="clear:both"></div>
+            <div style="clear: both"></div>
             <div class="city_container">
-              <div class="city_container_left"><span class="style_color">内蒙古</span></div>
+              <div class="city_container_left">
+                <span class="style_color">内蒙古</span>
+              </div>
               <div class="city_container_right">
                 <span class="city_name">呼和浩特</span>
                 <span class="city_name">包头</span>
@@ -74,9 +89,11 @@
                 <span class="city_name">阿拉善盟</span>
               </div>
             </div>
-            <div style="clear:both"></div>
+            <div style="clear: both"></div>
             <div class="city_container">
-              <div class="city_container_left"><span class="style_color">山西</span></div>
+              <div class="city_container_left">
+                <span class="style_color">山西</span>
+              </div>
               <div class="city_container_right">
                 <span class="city_name">太原</span>
                 <span class="city_name">大同</span>
@@ -91,9 +108,11 @@
                 <span class="city_name">吕梁</span>
               </div>
             </div>
-            <div style="clear:both"></div>
+            <div style="clear: both"></div>
             <div class="city_container">
-              <div class="city_container_left"><span class="style_color">陕西</span></div>
+              <div class="city_container_left">
+                <span class="style_color">陕西</span>
+              </div>
               <div class="city_container_right">
                 <span class="city_name">西安</span>
                 <span class="city_name">铜川</span>
@@ -107,9 +126,11 @@
                 <span class="city_name">商洛</span>
               </div>
             </div>
-            <div style="clear:both"></div>
+            <div style="clear: both"></div>
             <div class="city_container">
-              <div class="city_container_left"><span class="style_color">河北</span></div>
+              <div class="city_container_left">
+                <span class="style_color">河北</span>
+              </div>
               <div class="city_container_right">
                 <span class="city_name">石家庄</span>
                 <span class="city_name">唐山</span>
@@ -124,9 +145,11 @@
                 <span class="city_name">衡水</span>
               </div>
             </div>
-            <div style="clear:both"></div>
+            <div style="clear: both"></div>
             <div class="city_container">
-              <div class="city_container_left"><span class="style_color">辽宁</span></div>
+              <div class="city_container_left">
+                <span class="style_color">辽宁</span>
+              </div>
               <div class="city_container_right">
                 <span class="city_name">沈阳</span>
                 <span class="city_name">大连</span>
@@ -144,9 +167,11 @@
                 <span class="city_name">葫芦岛</span>
               </div>
             </div>
-            <div style="clear:both"></div>
+            <div style="clear: both"></div>
             <div class="city_container">
-              <div class="city_container_left"><span class="style_color">吉林</span></div>
+              <div class="city_container_left">
+                <span class="style_color">吉林</span>
+              </div>
               <div class="city_container_right">
                 <span class="city_name">长春</span>
                 <span class="city_name">吉林市</span>
@@ -159,9 +184,11 @@
                 <span class="city_name">延边</span>
               </div>
             </div>
-            <div style="clear:both"></div>
+            <div style="clear: both"></div>
             <div class="city_container">
-              <div class="city_container_left"><span class="style_color">黑龙江</span></div>
+              <div class="city_container_left">
+                <span class="style_color">黑龙江</span>
+              </div>
               <div class="city_container_right">
                 <span class="city_name">哈尔滨</span>
                 <span class="city_name">齐齐哈尔</span>
@@ -178,9 +205,11 @@
                 <span class="city_name">大兴安岭</span>
               </div>
             </div>
-            <div style="clear:both"></div>
+            <div style="clear: both"></div>
             <div class="city_container">
-              <div class="city_container_left"><span class="style_color">江苏</span></div>
+              <div class="city_container_left">
+                <span class="style_color">江苏</span>
+              </div>
               <div class="city_container_right">
                 <span class="city_name">南京</span>
                 <span class="city_name">无锡</span>
@@ -197,9 +226,11 @@
                 <span class="city_name">宿迁</span>
               </div>
             </div>
-            <div style="clear:both"></div>
+            <div style="clear: both"></div>
             <div class="city_container">
-              <div class="city_container_left"><span class="style_color">安徽</span></div>
+              <div class="city_container_left">
+                <span class="style_color">安徽</span>
+              </div>
               <div class="city_container_right">
                 <span class="city_name">合肥</span>
                 <span class="city_name">蚌埠</span>
@@ -219,9 +250,11 @@
                 <span class="city_name">亳州</span>
               </div>
             </div>
-            <div style="clear:both"></div>
+            <div style="clear: both"></div>
             <div class="city_container">
-              <div class="city_container_left"><span class="style_color">山东</span></div>
+              <div class="city_container_left">
+                <span class="style_color">山东</span>
+              </div>
               <div class="city_container_right">
                 <span class="city_name">济南</span>
                 <span class="city_name">青岛</span>
@@ -241,9 +274,11 @@
                 <span class="city_name">菏泽</span>
               </div>
             </div>
-            <div style="clear:both"></div>
+            <div style="clear: both"></div>
             <div class="city_container">
-              <div class="city_container_left"><span class="style_color">浙江</span></div>
+              <div class="city_container_left">
+                <span class="style_color">浙江</span>
+              </div>
               <div class="city_container_right">
                 <span class="city_name">杭州</span>
                 <span class="city_name">宁波</span>
@@ -258,9 +293,11 @@
                 <span class="city_name">湖州</span>
               </div>
             </div>
-            <div style="clear:both"></div>
+            <div style="clear: both"></div>
             <div class="city_container">
-              <div class="city_container_left"><span class="style_color">江西</span></div>
+              <div class="city_container_left">
+                <span class="style_color">江西</span>
+              </div>
               <div class="city_container_right">
                 <span class="city_name">南昌</span>
                 <span class="city_name">景德镇</span>
@@ -275,9 +312,11 @@
                 <span class="city_name">上饶</span>
               </div>
             </div>
-            <div style="clear:both"></div>
+            <div style="clear: both"></div>
             <div class="city_container">
-              <div class="city_container_left"><span class="style_color">福建</span></div>
+              <div class="city_container_left">
+                <span class="style_color">福建</span>
+              </div>
               <div class="city_container_right">
                 <span class="city_name">福州</span>
                 <span class="city_name">厦门</span>
@@ -290,9 +329,11 @@
                 <span class="city_name">宁德</span>
               </div>
             </div>
-            <div style="clear:both"></div>
+            <div style="clear: both"></div>
             <div class="city_container">
-              <div class="city_container_left"><span class="style_color">湖南</span></div>
+              <div class="city_container_left">
+                <span class="style_color">湖南</span>
+              </div>
               <div class="city_container_right">
                 <span class="city_name">长沙</span>
                 <span class="city_name">株洲</span>
@@ -310,9 +351,11 @@
                 <span class="city_name">湘西</span>
               </div>
             </div>
-            <div style="clear:both"></div>
+            <div style="clear: both"></div>
             <div class="city_container">
-              <div class="city_container_left"><span class="style_color">湖北</span></div>
+              <div class="city_container_left">
+                <span class="style_color">湖北</span>
+              </div>
               <div class="city_container_right">
                 <span class="city_name">武汉</span>
                 <span class="city_name">黄石</span>
@@ -333,9 +376,11 @@
                 <span class="city_name">神农架</span>
               </div>
             </div>
-            <div style="clear:both"></div>
+            <div style="clear: both"></div>
             <div class="city_container">
-              <div class="city_container_left"><span class="style_color">河南</span></div>
+              <div class="city_container_left">
+                <span class="style_color">河南</span>
+              </div>
               <div class="city_container_right">
                 <span class="city_name">郑州</span>
                 <span class="city_name">开封</span>
@@ -357,9 +402,11 @@
                 <span class="city_name">济源</span>
               </div>
             </div>
-            <div style="clear:both"></div>
+            <div style="clear: both"></div>
             <div class="city_container">
-              <div class="city_container_left"><span class="style_color">海南</span></div>
+              <div class="city_container_left">
+                <span class="style_color">海南</span>
+              </div>
               <div class="city_container_right">
                 <span class="city_name">海口</span>
                 <span class="city_name">三亚</span>
@@ -382,9 +429,11 @@
                 <span class="city_name">琼中</span>
               </div>
             </div>
-            <div style="clear:both"></div>
+            <div style="clear: both"></div>
             <div class="city_container">
-              <div class="city_container_left"><span class="style_color">广东</span></div>
+              <div class="city_container_left">
+                <span class="style_color">广东</span>
+              </div>
               <div class="city_container_right">
                 <span class="city_name">广州</span>
                 <span class="city_name">深圳</span>
@@ -409,9 +458,11 @@
                 <span class="city_name">云浮</span>
               </div>
             </div>
-            <div style="clear:both"></div>
+            <div style="clear: both"></div>
             <div class="city_container">
-              <div class="city_container_left"><span class="style_color">广西</span></div>
+              <div class="city_container_left">
+                <span class="style_color">广西</span>
+              </div>
               <div class="city_container_right">
                 <span class="city_name">南宁</span>
                 <span class="city_name">柳州</span>
@@ -429,9 +480,11 @@
                 <span class="city_name">崇左</span>
               </div>
             </div>
-            <div style="clear:both"></div>
+            <div style="clear: both"></div>
             <div class="city_container">
-              <div class="city_container_left"><span class="style_color">贵州</span></div>
+              <div class="city_container_left">
+                <span class="style_color">贵州</span>
+              </div>
               <div class="city_container_right">
                 <span class="city_name">贵阳</span>
                 <span class="city_name">遵义</span>
@@ -444,9 +497,11 @@
                 <span class="city_name">黔南</span>
               </div>
             </div>
-            <div style="clear:both"></div>
+            <div style="clear: both"></div>
             <div class="city_container">
-              <div class="city_container_left"><span class="style_color">四川</span></div>
+              <div class="city_container_left">
+                <span class="style_color">四川</span>
+              </div>
               <div class="city_container_right">
                 <span class="city_name">成都</span>
                 <span class="city_name">自贡</span>
@@ -471,9 +526,11 @@
                 <span class="city_name">凉山</span>
               </div>
             </div>
-            <div style="clear:both"></div>
+            <div style="clear: both"></div>
             <div class="city_container">
-              <div class="city_container_left"><span class="style_color">云南</span></div>
+              <div class="city_container_left">
+                <span class="style_color">云南</span>
+              </div>
               <div class="city_container_right">
                 <span class="city_name">昆明</span>
                 <span class="city_name">保山</span>
@@ -493,9 +550,11 @@
                 <span class="city_name">迪庆</span>
               </div>
             </div>
-            <div style="clear:both"></div>
+            <div style="clear: both"></div>
             <div class="city_container">
-              <div class="city_container_left"><span class="style_color">甘肃</span></div>
+              <div class="city_container_left">
+                <span class="style_color">甘肃</span>
+              </div>
               <div class="city_container_right">
                 <span class="city_name">兰州</span>
                 <span class="city_name">嘉峪关</span>
@@ -513,9 +572,11 @@
                 <span class="city_name">甘南</span>
               </div>
             </div>
-            <div style="clear:both"></div>
+            <div style="clear: both"></div>
             <div class="city_container">
-              <div class="city_container_left"><span class="style_color">宁夏</span></div>
+              <div class="city_container_left">
+                <span class="style_color">宁夏</span>
+              </div>
               <div class="city_container_right">
                 <span class="city_name">银川</span>
                 <span class="city_name">石嘴山</span>
@@ -524,9 +585,11 @@
                 <span class="city_name">中卫</span>
               </div>
             </div>
-            <div style="clear:both"></div>
+            <div style="clear: both"></div>
             <div class="city_container">
-              <div class="city_container_left"><span class="style_color">青海</span></div>
+              <div class="city_container_left">
+                <span class="style_color">青海</span>
+              </div>
               <div class="city_container_right">
                 <span class="city_name">西宁</span>
                 <span class="city_name">玉树</span>
@@ -538,9 +601,11 @@
                 <span class="city_name">海南</span>
               </div>
             </div>
-            <div style="clear:both"></div>
+            <div style="clear: both"></div>
             <div class="city_container">
-              <div class="city_container_left"><span class="style_color">西藏</span></div>
+              <div class="city_container_left">
+                <span class="style_color">西藏</span>
+              </div>
               <div class="city_container_right">
                 <span class="city_name">拉萨</span>
                 <span class="city_name">那曲</span>
@@ -551,9 +616,11 @@
                 <span class="city_name">林芝</span>
               </div>
             </div>
-            <div style="clear:both"></div>
+            <div style="clear: both"></div>
             <div class="city_container">
-              <div class="city_container_left"><span class="style_color">新疆</span></div>
+              <div class="city_container_left">
+                <span class="style_color">新疆</span>
+              </div>
               <div class="city_container_right">
                 <span class="city_name">乌鲁木齐</span>
                 <span class="city_name">克拉玛依</span>
@@ -588,8 +655,15 @@
     <div class="pr map-container">
       <div id="mapContainer"></div>
       <!--搜索出来的地方-->
-      <div :class="searchList.length > 0 ? 'map-city-list open' : 'map-city-list'">
-        <div :class="select_address == index ? 'd-s-s item active' : 'd-s-s item'" v-for="(item, index) in searchList" :key="index" @click="choseItem(item, index)">
+      <div
+        :class="searchList.length > 0 ? 'map-city-list open' : 'map-city-list'"
+      >
+        <div
+          :class="select_address == index ? 'd-s-s item active' : 'd-s-s item'"
+          v-for="(item, index) in searchList"
+          :key="index"
+          @click="choseItem(item, index)"
+        >
           <span class="index-box">{{ index + 1 }}</span>
           <div class="flex-1">
             <p class="title">{{ item.title }}</p>
@@ -602,9 +676,9 @@
 </template>
 
 <script>
-import marker10 from '@/assets/img/marker10.png';
-import { TMap } from '@/utils/txmap.js';
-import { getJson } from '@/utils/getJson.js';
+import marker10 from "@/assets/img/marker10.png";
+import { TMap } from "@/utils/txmap.js";
+import { getJson } from "@/utils/getJson.js";
 export default {
   data() {
     return {
@@ -625,19 +699,19 @@ export default {
       /*城市列表是否显示*/
       is_city: false,
       /*关键字*/
-      searchValue: '',
+      searchValue: "",
       /*搜索字母*/
-      searchWord: '',
+      searchWord: "",
       /*键盘事件搜索的数据*/
       searchWordList: [],
       /*选择搜索出来的数据列表*/
       searchlist_index: null,
       /*图标临时对象*/
-      marker_temp: null
+      marker_temp: null,
     };
   },
   props: {
-    form: Object
+    form: Object,
   },
   watch: {
     /* 'form.is_search_map': {
@@ -657,50 +731,60 @@ export default {
     /*初始化*/
     start() {
       const self = this;
-      TMap().then(qq => {
-        self.map = new qq.maps.Map(document.getElementById('mapContainer'), {
+      TMap().then((qq) => {
+        self.map = new qq.maps.Map(document.getElementById("mapContainer"), {
           // 地图的中心地理坐标。
           center: new qq.maps.LatLng(39.916527, 116.397128),
-          draggableCursor: 'crosshair',
-          draggingCursor: 'crosshair',
-          zoom: 8
+          draggableCursor: "crosshair",
+          draggingCursor: "crosshair",
+          zoom: 8,
         });
 
         //获取当前的城市
         let cityservice = new qq.maps.CityService({
-          complete: function(result) {
+          complete: function (result) {
             self.select_city = result.detail.name;
-            self.map.panTo(new qq.maps.LatLng(result.detail.latLng.lat, result.detail.latLng.lng));
+            self.map.panTo(
+              new qq.maps.LatLng(
+                result.detail.latLng.lat,
+                result.detail.latLng.lng
+              )
+            );
             self.map.zoomTo(13);
-          }
+          },
         });
         cityservice.searchLocalCity();
 
         //绑定单击地图事件添加参数
-        qq.maps.event.addListener(self.map, 'click', function(event) {
-          let lat=event.latLng.getLat(),
-          lng=event.latLng.getLng();
-          let url = encodeURI("https://apis.map.qq.com/ws/geocoder/v1/?location=" + lat + "," + lng +
-          	"&key=LS7BZ-NHSWK-CWOJQ-AJC7Y-H5HE2-UGBWR&output=jsonp&&callback=?");
-          getJson(url, 'QQmap', function(res) {
+        qq.maps.event.addListener(self.map, "click", function (event) {
+          let lat = event.latLng.getLat(),
+            lng = event.latLng.getLng();
+          let url = encodeURI(
+            "https://apis.map.qq.com/ws/geocoder/v1/?location=" +
+              lat +
+              "," +
+              lng +
+              "&key=LS7BZ-NHSWK-CWOJQ-AJC7Y-H5HE2-UGBWR&output=jsonp&&callback=?"
+          );
+          getJson(url, "QQmap", function (res) {
             if (res.status == 0) {
-              self.$emit('chose', res.result);
+              self.$emit("chose", res.result);
             }
           });
         });
 
         //获取地图缩放层级
-        qq.maps.event.addListener(self.map, 'zoom_changed', function() {
+        qq.maps.event.addListener(self.map, "zoom_changed", function () {
           self.zoom = self.map.getZoom();
         });
 
         self.qq = qq;
 
         //选择城市
-        let cityList = document.getElementById('city');
-        cityList.onclick = function(ev) {
+        let cityList = document.getElementById("city");
+        cityList.onclick = function (ev) {
           var ev = ev || event;
-          if (ev.target.className == 'city_name') {
+          if (ev.target.className == "city_name") {
             var name = ev.target.innerText;
             self.select_city = name;
             self.is_city = false;
@@ -712,7 +796,7 @@ export default {
     /*监听键盘事件*/
     keyupFunc(e) {
       /*如果已经有搜索内容，按下向下的键盘*/
-      if (e.key == 'ArrowDown') {
+      if (e.key == "ArrowDown") {
         if (this.searchWordList.length > 0) {
           if (this.searchlist_index == null) {
             this.searchlist_index = 0;
@@ -728,7 +812,7 @@ export default {
       }
 
       /*如果已经有搜索内容，按下向上的键盘*/
-      if (e.key == 'ArrowUp') {
+      if (e.key == "ArrowUp") {
         if (this.searchWordList.length > 0) {
           if (this.searchlist_index == null) {
             this.searchlist_index = this.searchWordList.length - 1;
@@ -744,7 +828,11 @@ export default {
       }
 
       /*如果搜索有数据，选中也有值，则直接赋值*/
-      if (e.key == 'Enter' && this.searchWordList.length > 0 && this.searchlist_index != null) {
+      if (
+        e.key == "Enter" &&
+        this.searchWordList.length > 0 &&
+        this.searchlist_index != null
+      ) {
         this.searchValue = this.searchWordList[this.searchlist_index].title;
         this.searchWordList = [];
         this.searchlist_index = null;
@@ -760,16 +848,19 @@ export default {
           this.getSearchWord(this.searchValue);
         }
       } else {
-        if (e.key == 'Backspace') {
+        if (e.key == "Backspace") {
           if (this.searchValue.length < 1) {
-            this.searchWord = this.searchWord.substr(0, this.searchWord.length - 1);
+            this.searchWord = this.searchWord.substr(
+              0,
+              this.searchWord.length - 1
+            );
             this.getSearchWord(this.searchWord);
           } else {
             this.getSearchWord(this.searchValue);
           }
-        } else if (e.key == 'Process' || e.key == 'Enter') {
+        } else if (e.key == "Process" || e.key == "Enter") {
           if (this.searchValue.length > 0) {
-            this.searchWord == '';
+            this.searchWord == "";
           }
           this.getSearchWord(this.searchValue);
         }
@@ -779,14 +870,18 @@ export default {
     /*搜索关键字变化时，触发获取类似列表*/
     getSearchWord(Value) {
       let self = this;
-      if (Value == '') {
+      if (Value == "") {
         return;
       }
       let url = encodeURI(
-        'https://apis.map.qq.com/ws/place/v1/suggestion/?keyword=' + Value + '&region=' + this.select_city + '&key=LS7BZ-NHSWK-CWOJQ-AJC7Y-H5HE2-UGBWR&output=jsonp&&callback=?'
+        "https://apis.map.qq.com/ws/place/v1/suggestion/?keyword=" +
+          Value +
+          "&region=" +
+          this.select_city +
+          "&key=LS7BZ-NHSWK-CWOJQ-AJC7Y-H5HE2-UGBWR&output=jsonp&&callback=?"
       );
 
-      getJson(url, 'QQmap', function(res) {
+      getJson(url, "QQmap", function (res) {
         if (res.status == 0) {
           self.searchWordList = res.data;
         }
@@ -812,11 +907,11 @@ export default {
         self.is_city = false;
       }
       if (self.select_city == null) {
-        ElMessage .error('请选择城市!');
+        ElMessage.error("请选择城市!");
         return;
       }
-      if (self.searchValue == '') {
-        ElMessage .error('请填写搜索的内容!');
+      if (self.searchValue == "") {
+        ElMessage.error("请填写搜索的内容!");
         return;
       }
 
@@ -824,36 +919,38 @@ export default {
       let query_city = self.select_city;
 
       let url = encodeURI(
-        'https://apis.map.qq.com/ws/place/v1/search?keyword=' +
+        "https://apis.map.qq.com/ws/place/v1/search?keyword=" +
           value +
-          '&boundary=region(' +
+          "&boundary=region(" +
           query_city +
-          ',0)&page_size=9&page_index=1&key=LS7BZ-NHSWK-CWOJQ-AJC7Y-H5HE2-UGBWR&output=jsonp&&callback=?'
+          ",0)&page_size=9&page_index=1&key=LS7BZ-NHSWK-CWOJQ-AJC7Y-H5HE2-UGBWR&output=jsonp&&callback=?"
       );
 
       /*通过关键字搜索*/
-      getJson(url, 'QQmap', function(res) {
+      getJson(url, "QQmap", function (res) {
         self.searchList = res.data;
 
         for (let n = 0; n < res.data.length; n++) {
           let ele = res.data[n];
-          let latlng = new self.qq.maps.LatLng(ele.location.lat, ele.location.lng);
+          let latlng = new self.qq.maps.LatLng(
+            ele.location.lat,
+            ele.location.lng
+          );
 
           let left = n * 27;
           let marker = new self.qq.maps.Marker({
             map: self.map,
             position: latlng,
-            zIndex: 10
+            zIndex: 10,
           });
           marker.index = n;
           marker.isClicked = false;
           self.markerPoint(marker, true);
           /*给图标加事件*/
-          self.qq.maps.event.addDomListener(marker, "click", function(e) {
-          	//console.log('点击地图',e.target.index);
-            self.choseItem(self.searchList[e.target.index],e.target.index);
+          self.qq.maps.event.addDomListener(marker, "click", function (e) {
+            //console.log('点击地图',e.target.index);
+            self.choseItem(self.searchList[e.target.index], e.target.index);
           });
-
         }
       });
     },
@@ -867,28 +964,41 @@ export default {
         var anchor = new self.qq.maps.Point(10, 30),
           origin = new self.qq.maps.Point(left, 0),
           size = new self.qq.maps.Size(27, 33),
-          icon = new self.qq.maps.MarkerImage(self.marker10_url, size, origin, anchor);
+          icon = new self.qq.maps.MarkerImage(
+            self.marker10_url,
+            size,
+            origin,
+            anchor
+          );
         marker.setIcon(icon);
       } else {
         var anchor = new self.qq.maps.Point(10, 30),
           origin = new self.qq.maps.Point(left, 35),
           size = new self.qq.maps.Size(27, 33),
-          icon = new self.qq.maps.MarkerImage(self.marker10_url, size, origin, anchor);
+          icon = new self.qq.maps.MarkerImage(
+            self.marker10_url,
+            size,
+            origin,
+            anchor
+          );
         marker.setIcon(icon);
       }
     },
 
     /*选择地点*/
     choseItem(item, _index) {
-      let self=this;
+      let self = this;
       self.select_address = _index;
       self.map.panTo(new qq.maps.LatLng(item.location.lat, item.location.lng));
       self.map.zoomTo(13);
-      let latlng = new self.qq.maps.LatLng(item.location.lat, item.location.lng);
+      let latlng = new self.qq.maps.LatLng(
+        item.location.lat,
+        item.location.lng
+      );
       let marker = new self.qq.maps.Marker({
         map: self.map,
         position: latlng,
-        zIndex: 10
+        zIndex: 10,
       });
       marker.index = _index;
       marker.isClicked = false;
@@ -897,11 +1007,11 @@ export default {
       }
       self.markerPoint(marker, false);
       self.marker_temp = marker;
-      self.qq.maps.event.addDomListener(marker, "click", function() {
-        self.choseItem(item,_index);
+      self.qq.maps.event.addDomListener(marker, "click", function () {
+        self.choseItem(item, _index);
       });
 
-      self.$emit('chose', item);
+      self.$emit("chose", item);
     },
 
     /*选择城市*/
@@ -918,8 +1028,8 @@ export default {
     searchMap() {},
 
     /*获取坐标*/
-    getMap(e) {}
-  }
+    getMap(e) {},
+  },
 };
 </script>
 
