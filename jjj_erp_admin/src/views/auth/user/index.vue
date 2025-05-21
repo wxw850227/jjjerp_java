@@ -1,38 +1,63 @@
 <template>
-  <!--
-        作者：luoyiming
-        时间：2019-10-25
-        描述：权限-管理员列表
-    -->
   <div class="user">
     <!--添加管理员-->
     <div class="common-level-rail">
-      <el-button size="small" type="primary" icon="Plus" @click="addClick" v-auth="'/auth/user/add'">添加管理员</el-button>
+      <el-button
+        size="small"
+        type="primary"
+        icon="Plus"
+        @click="addClick"
+        v-auth="'/auth/user/add'"
+        >添加管理员</el-button
+      >
     </div>
 
     <!--内容-->
     <div class="product-content">
       <div class="table-wrap">
-        <el-table size="small" :data="tableData" border style="width: 100%" v-loading="loading">
+        <el-table
+          size="small"
+          :data="tableData"
+          border
+          style="width: 100%"
+          v-loading="loading"
+        >
           <el-table-column prop="shopUserId" label="管理员ID"></el-table-column>
           <el-table-column prop="userName" label="用户名"></el-table-column>
           <el-table-column label="所属角色">
             <template #default="scope">
               <div v-if="scope.row.isSuper == 0">
-                <span class="mr10 green" v-for="(item, index) in scope.row.roleList" :key="index">{{ item.roleName }}</span>
+                <span
+                  class="mr10 green"
+                  v-for="(item, index) in scope.row.roleList"
+                  :key="index"
+                  >{{ item.roleName }}</span
+                >
               </div>
-              <div class="gray" v-if="scope.row.isSuper">
-                超级管理员
-              </div>
+              <div class="gray" v-if="scope.row.isSuper">超级管理员</div>
             </template>
           </el-table-column>
           <el-table-column prop="createTime" label="添加时间"></el-table-column>
           <el-table-column fixed="right" label="操作" width="120">
             <template #default="scope">
-              <el-button v-if="!scope.row.isSuper" @click="editClick(scope.row)"  type="primary"
-					  link size="small" v-auth="'/auth/user/edit'">编辑</el-button>
-              <el-button v-if="!scope.row.isSuper" @click="deleteClick(scope.row)"  type="primary"
-					  link size="small" v-auth="'/auth/user/delete'">删除</el-button>
+              <el-button
+                v-if="!scope.row.isSuper"
+                @click="editClick(scope.row)"
+                type="primary"
+                link
+                size="small"
+                v-auth="'/auth/user/edit'"
+                >编辑</el-button
+              >
+              <el-button
+                v-if="!scope.row.isSuper"
+                @click="deleteClick(scope.row)"
+                type="primary"
+                link
+                size="small"
+                v-auth="'/auth/user/delete'"
+                >删除</el-button
+              >
             </template>
           </el-table-column>
         </el-table>
@@ -54,21 +79,25 @@
 
     <Add :open="open_add" :roleList="roleList" @close="closeAdd"></Add>
 
-    <Edit :open="open_edit" :roleList="roleList" :model="curModel"  @close="closeEdit"></Edit>
-
+    <Edit
+      :open="open_edit"
+      :roleList="roleList"
+      :model="curModel"
+      @close="closeEdit"
+    ></Edit>
   </div>
 </template>
 
 <script>
-import AuthApi from '@/api/auth.js';
-import Add from './dialog/Add.vue';
-import Edit from './dialog/Edit.vue';
+import AuthApi from "@/api/auth.js";
+import Add from "./dialog/Add.vue";
+import Edit from "./dialog/Edit.vue";
 export default {
   components: {
     Add,
-    Edit
+    Edit,
   },
-  inject: ['reload'],
+  inject: ["reload"],
   data() {
     return {
       /*是否加载完成*/
@@ -88,7 +117,7 @@ export default {
       /*当前编辑的对象*/
       curModel: {},
       /*角色列表*/
-      roleList:[]
+      roleList: [],
     };
   },
   created() {
@@ -118,38 +147,38 @@ export default {
       Params.pageIndex = self.curPage;
       Params.pageSize = self.pageSize;
       AuthApi.userList(Params, true)
-        .then(res => {
+        .then((res) => {
           self.loading = false;
           self.tableData = res.data.userList.records;
           self.totalDataNumber = res.data.userList.total;
           self.roleList = res.data.roleList;
         })
-        .catch(error => {});
+        .catch((error) => {});
     },
 
     /*打开添加*/
     addClick() {
-      this.open_add=true;
+      this.open_add = true;
     },
 
     /*关闭添加*/
-    closeAdd(e){
-      this.open_add=false;
-      if(e && e.type=='success'){
+    closeAdd(e) {
+      this.open_add = false;
+      if (e && e.type == "success") {
         this.getTableList();
       }
     },
 
     /*打开编辑*/
     editClick(row) {
-      this.curModel=row;
-      this.open_edit=true;
+      this.curModel = row;
+      this.open_edit = true;
     },
 
     /*关闭添加*/
-    closeEdit(e){
-      this.open_edit=false;
-      if(e && e.type=='success'){
+    closeEdit(e) {
+      this.open_edit = false;
+      if (e && e.type == "success") {
         this.getTableList();
       }
     },
@@ -157,25 +186,25 @@ export default {
     /*删除*/
     deleteClick(row) {
       let self = this;
-      ElMessageBox.confirm('此操作将永久删除该记录, 是否继续?', '提示', {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
-          type: 'warning'
-        })
+      ElMessageBox.confirm("此操作将永久删除该记录, 是否继续?", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning",
+      })
         .then(() => {
           self.loading = true;
           AuthApi.userDelete(
             {
-              shopUserId: row.shopUserId
+              shopUserId: row.shopUserId,
             },
             true
           )
-            .then(data => {
+            .then((data) => {
               self.loading = false;
               if (data.code == 1) {
-                ElMessage ({
-                  message: '恭喜你，该管理员删除成功',
-                  type: 'success'
+                ElMessage({
+                  message: "恭喜你，该管理员删除成功",
+                  type: "success",
                 });
                 //刷新页面
                 self.getTableList();
@@ -183,13 +212,13 @@ export default {
                 self.loading = false;
               }
             })
-            .catch(error => {
+            .catch((error) => {
               self.loading = false;
             });
         })
         .catch(() => {});
-    }
-  }
+    },
+  },
 };
 </script>
 

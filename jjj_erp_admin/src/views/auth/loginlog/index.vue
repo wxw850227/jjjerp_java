@@ -1,17 +1,28 @@
 <template>
-  <!--
-        作者：luoyiming
-        时间：2019-10-25
-        描述：权限-登录日志
-    -->
   <div class="user">
-
     <!--搜索表单-->
     <div class="common-seach-wrap">
-      <el-form size="small" :inline="true" :model="searchForm" class="demo-form-inline">
-        <el-form-item><el-input size="small" v-model="searchForm.search" placeholder="请输入用户名和真实姓名"></el-input></el-form-item>
+      <el-form
+        size="small"
+        :inline="true"
+        :model="searchForm"
+        class="demo-form-inline"
+      >
+        <el-form-item
+          ><el-input
+            size="small"
+            v-model="searchForm.search"
+            placeholder="请输入用户名和真实姓名"
+          ></el-input
+        ></el-form-item>
         <el-form-item>
-          <el-button size="small" type="primary" icon="Search" @click="searchSubmit">查询</el-button>
+          <el-button
+            size="small"
+            type="primary"
+            icon="Search"
+            @click="searchSubmit"
+            >查询</el-button
+          >
         </el-form-item>
       </el-form>
     </div>
@@ -19,7 +30,13 @@
     <!--内容-->
     <div class="product-content">
       <div class="table-wrap">
-        <el-table size="small" :data="tableData" border style="width: 100%" v-loading="loading">
+        <el-table
+          size="small"
+          :data="tableData"
+          border
+          style="width: 100%"
+          v-loading="loading"
+        >
           <el-table-column prop="loginLogId" label="ID"></el-table-column>
           <el-table-column prop="ip" label="IP"></el-table-column>
           <el-table-column prop="result" label="登录状态"></el-table-column>
@@ -45,10 +62,10 @@
 </template>
 
 <script>
-import AuthApi from '@/api/auth.js';
+import AuthApi from "@/api/auth.js";
 export default {
   components: {},
-  inject: ['reload'],
+  inject: ["reload"],
   data() {
     return {
       /*是否加载完成*/
@@ -63,14 +80,14 @@ export default {
       curPage: 1,
       /*横向表单数据模型*/
       searchForm: {
-        search:''
+        search: "",
       },
       /*是否打开添加弹窗*/
       open_add: false,
       /*是否打开编辑弹窗*/
       open_edit: false,
       /*当前编辑的对象*/
-      userModel: {}
+      userModel: {},
     };
   },
   created() {
@@ -78,9 +95,8 @@ export default {
     this.getTableList();
   },
   methods: {
-
     /*搜索*/
-    searchSubmit(){
+    searchSubmit() {
       this.curPage = 1;
       this.getTableList();
     },
@@ -106,31 +122,31 @@ export default {
       let Params = {
         pageIndex: self.curPage,
         pageSize: self.pageSize,
-        username: self.searchForm.search
+        username: self.searchForm.search,
       };
 
       AuthApi.loginlog(Params, true)
-        .then(res => {
+        .then((res) => {
           self.loading = false;
           self.tableData = res.data.records;
           self.totalDataNumber = res.data.total;
         })
-        .catch(error => {});
+        .catch((error) => {});
     },
 
     /*打开添加*/
     addClick() {
-      this.$router.push('/auth/user/add');
+      this.$router.push("/auth/user/add");
     },
 
     /*打开编辑*/
     editClick(row) {
       let self = this;
       this.$router.push({
-        path: '/auth/user/edit',
+        path: "/auth/user/edit",
         query: {
-          shop_user_id: row.shop_user_id
-        }
+          shop_user_id: row.shop_user_id,
+        },
       });
     },
 
@@ -143,25 +159,25 @@ export default {
     /*删除*/
     deleteClick(row) {
       let self = this;
-      ElMessageBox.confirm('此操作将永久删除该记录, 是否继续?', '提示', {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
-          type: 'warning'
-        })
+      ElMessageBox.confirm("此操作将永久删除该记录, 是否继续?", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning",
+      })
         .then(() => {
           self.loading = true;
           AuthApi.userDelete(
             {
-              shop_user_id: row.shop_user_id
+              shop_user_id: row.shop_user_id,
             },
             true
           )
-            .then(data => {
+            .then((data) => {
               self.loading = false;
               if (data.code == 1) {
-                ElMessage ({
-                  message: '恭喜你，该管理员删除成功',
-                  type: 'success'
+                ElMessage({
+                  message: "恭喜你，该管理员删除成功",
+                  type: "success",
                 });
                 //刷新页面
                 self.getTableList();
@@ -169,13 +185,13 @@ export default {
                 self.loading = false;
               }
             })
-            .catch(error => {
+            .catch((error) => {
               self.loading = false;
             });
         })
         .catch(() => {});
-    }
-  }
+    },
+  },
 };
 </script>
 
